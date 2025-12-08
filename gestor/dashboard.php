@@ -12,10 +12,10 @@
         :root {
 
             --sidebar-bg: #251ef9ff;
-
-
             --sidebar-header: #1e4df9ff;
 
+
+            --main-bg: #5088c0ff;
         }
 
         body {
@@ -31,8 +31,9 @@
             background-color: var(--sidebar-header);
         }
 
-        .custom-logo-box {
-            background-color: var(--logo-bg);
+
+        .custom-main-bg {
+            background-color: var(--main-bg);
         }
     </style>
 </head>
@@ -327,17 +328,16 @@
             </nav>
         </aside>
 
-        <main class="flex-1 flex flex-col overflow-hidden">
+        <main class="flex-1 flex flex-col overflow-hidden custom-main-bg">
 
-            <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8">
+            <header class="h-16 custom-main-bg border-b border-gray-200 flex items-center justify-between px-8">
                 <h2 class="text-xl font-semibold text-slate-800">Panel de Control</h2>
                 <div class="flex items-center gap-4">
-
                     <div class="flex items-center gap-2">
                         <span class="text-sm font-medium text-slate-700">Admin</span>
                         <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600">
                             <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                                <title xmlns="">account</title>
+                                <title>account</title>
                                 <g fill="none" stroke="currentColor" stroke-dasharray="28" stroke-dashoffset="28"
                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <path d="M4 21v-1c0 -3.31 2.69 -6 6 -6h4c3.31 0 6 2.69 6 6v1">
@@ -356,27 +356,22 @@
                 </div>
             </header>
 
-            <div class="flex-1 overflow-y-auto p-8 bg-gray-50">
-
+            <div class="flex-1 overflow-y-auto p-8 custom-main-bg">
                 <div class="mb-8">
                     <h1 class="text-2xl font-bold text-slate-900">Bienvenido a Todo en Color</h1>
-                    <p class="text-slate-500 mt-1">Tu sistema de gestión está listo. Agrega
-                        tus categorias o añade tus productos nuevos.</p>
+                    <p class="text-slate-500 mt-1">Tu sistema de gestión está listo. Agrega tus categorias o añade tus
+                        productos nuevos.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-
-
                 </div>
-
-
             </div>
 
-            <div class="relative z-10 text-xs text-slate-600 font-medium">
+            <div class="relative z-10 text-xs text-slate-600 font-medium p-8 custom-main-bg">
                 &copy; S.I.G.E.T 2025 - Sistema de Inventario y Gestión de Tintas.
             </div>
-    </div>
-    </main>
+
+        </main>
     </div>
 
     <script>
