@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chromatica Inks - Acceso Corporativo</title>
+    <title>Inicio de Sesion</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -140,8 +140,8 @@
                 </div>
                 <div>
                     <span
-                        class="font-display font-bold text-3xl tracking-wide text-white block leading-none">Chromatica</span>
-                    <span class="text-xs text-ink-cyan tracking-[0.3em] uppercase">Chemical Group</span>
+                        class="font-display font-bold text-3xl tracking-wide text-white block leading-none">Todo en Colo</span>
+                    <span class="text-xs text-ink-cyan tracking-[0.3em] uppercase">COLORES ESPECIALES OFFSET</span>
                 </div>
             </div>
         </div>
@@ -152,7 +152,7 @@
                 Precisión en <br>cada gota.
             </h2>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Plataforma integral para la gestión de formulaciones de tinta, control de viscosidad e inventario de
+                Plataforma integral para la gestión de existencias en el mercado formulaciones de tinta, control de viscosidad e inventario de
                 pigmentos en tiempo real.
             </p>
 
@@ -177,7 +177,7 @@
         </div>
 
         <div class="relative z-10 text-xs text-slate-600 font-medium">
-            &copy; 2024 Chromatica Chemical Group. Sistema v2.4
+            &copy;  S.I.G.E.T 2025 - Sistema de Inventario y Gestión de Tintas.
         </div>
     </div>
 
@@ -196,7 +196,7 @@
             </div>
 
             <div class="text-center mb-8">
-                <h1 class="font-display text-3xl font-bold text-white mb-2">Panel de Control</h1>
+                <h1 class="font-display text-3xl font-bold text-white mb-2">Inicia Sesión</h1>
                 <p class="text-slate-400 text-sm">Ingresa tus credenciales autorizadas.</p>
             </div>
 
@@ -207,8 +207,11 @@
                         / Email</label>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i
-                                class="fa-regular fa-envelope text-slate-500 group-focus-within:text-ink-cyan transition-colors"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
+                                <title xmlns="">users</title>
+                                <path fill="currentColor"
+                                    d="M11 0H5v2H3v6h2v2h6V8H5V2h6zm0 2h2v6h-2zM0 14h2v4h12v2H0zm2 0h12v-2H2zm14 0h-2v6h2zM15 0h4v2h-4zm4 8h-4v2h4zm0-6h2v6h-2zm5 12h-2v4h-4v2h6zm-6-2h4v2h-4z" />
+                            </svg>
                         </div>
                         <input type="email" id="email"
                             class="block w-full pl-11 pr-4 py-3 bg-slate-950/50 border border-slate-700/50 rounded-xl text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-ink-cyan focus:border-ink-cyan transition-all shadow-inner"
@@ -223,8 +226,11 @@
                     </div>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <i
-                                class="fa-solid fa-lock text-slate-500 group-focus-within:text-ink-cyan transition-colors"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
+                                <title xmlns="">lock</title>
+                                <path fill="currentColor"
+                                    d="M15 2H9v2H7v4H4v14h16V8h-3V4h-2zm0 2v4H9V4zm-6 6h9v10H6V10zm4 3h-2v4h2z" />
+                            </svg>
                         </div>
                         <input type="password" id="password"
                             class="block w-full pl-11 pr-12 py-3 bg-slate-950/50 border border-slate-700/50 rounded-xl text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-ink-cyan focus:border-ink-cyan transition-all shadow-inner"
