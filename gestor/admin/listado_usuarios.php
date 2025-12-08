@@ -31,14 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accion']) && $_POST['a
     $pass_input = $_POST['password'];
 
     try {
-        
+
         if (!empty($pass_input)) {
             $password = password_hash($pass_input, PASSWORD_DEFAULT);
             $sql = "UPDATE usuarios SET nombre=?, usuario=?, password=?, rol=?, estado=? WHERE id_usuario=?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$nombre, $usuario, $password, $rol, $estado, $id]);
         } else {
-            
+
             $sql = "UPDATE usuarios SET nombre=?, usuario=?, rol=?, estado=? WHERE id_usuario=?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$nombre, $usuario, $rol, $estado, $id]);
@@ -68,6 +68,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,36 +76,9 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f0f2f5; color: #444; }
-        .main-card { background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: none; padding: 30px; }
-        .table { border-collapse: separate; border-spacing: 0 10px; }
-        .table thead th { border: none; background: transparent; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #8898aa; font-weight: 600; padding-bottom: 15px; }
-        .table tbody tr { background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s; border-radius: 10px; }
-        .table tbody tr:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); z-index: 2; position: relative; }
-        .table td { border: none; padding: 15px 20px; vertical-align: middle; font-size: 0.95rem; }
-        .table tbody td:first-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
-        .table tbody td:last-child { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
-        .avatar { width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 0.9rem; }
-        .btn-gradient { background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%); border: none; color: white; padding: 10px 25px; border-radius: 50px; font-weight: 500; box-shadow: 0 4px 15px rgba(100, 100, 255, 0.3); transition: all 0.3s ease; }
-        .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(100, 100, 255, 0.4); color: white; }
-        .action-btn { width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; transition: 0.2s; border: 1px solid transparent; background: transparent; cursor: pointer;}
-        .btn-edit { color: #4776E6; background: rgba(71, 118, 230, 0.1); }
-        .btn-edit:hover { background: #4776E6; color: white; }
-        .btn-del { color: #ff4b2b; background: rgba(255, 75, 43, 0.1); }
-        .btn-del:hover { background: #ff4b2b; color: white; }
-        .badge-soft { padding: 8px 12px; border-radius: 30px; font-weight: 500; font-size: 0.75rem; }
-        .bg-soft-success { background-color: #d1fae5; color: #065f46; }
-        .bg-soft-danger { background-color: #fee2e2; color: #991b1b; }
-        .bg-soft-primary { background-color: #dbeafe; color: #1e40af; }
-        .bg-soft-purple { background-color: #f3e8ff; color: #6b21a8; }
-        .modal-content { border-radius: 20px; border: none; }
-        .modal-header { border-bottom: 1px solid #f0f0f0; padding: 20px 30px; }
-        .modal-body { padding: 30px; }
-        .form-control, .form-select { background-color: #f9f9f9; border: 1px solid #eee; border-radius: 10px; padding: 10px 15px; }
-        .form-control:focus, .form-select:focus { box-shadow: none; border-color: #4776E6; background-color: #fff; }
-    </style>
+    <link rel="stylesheet" href="../public/css/listado_usuarios.css">
+
+
 </head>
 
 <body>
@@ -147,29 +121,36 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <span class="badge badge-soft <?= $user['rol'] == 'Administrador' ? 'bg-soft-purple' : 'bg-soft-primary' ?>">
-                                            <i class="fas <?= $user['rol'] == 'Administrador' ? 'fa-crown' : 'fa-user' ?> me-1"></i> <?= $user['rol'] ?>
+                                        <span
+                                            class="badge badge-soft <?= $user['rol'] == 'Administrador' ? 'bg-soft-purple' : 'bg-soft-primary' ?>">
+                                            <i
+                                                class="fas <?= $user['rol'] == 'Administrador' ? 'fa-crown' : 'fa-user' ?> me-1"></i>
+                                            <?= $user['rol'] ?>
                                         </span>
                                     </td>
                                     <td class="text-center">
-                                        <span class="badge badge-soft <?= $user['estado'] == 'Activo' ? 'bg-soft-success' : 'bg-soft-danger' ?>">
-                                            <i class="fas <?= $user['estado'] == 'Activo' ? 'fa-check-circle' : 'fa-ban' ?> me-1"></i> <?= $user['estado'] ?>
+                                        <span
+                                            class="badge badge-soft <?= $user['estado'] == 'Activo' ? 'bg-soft-success' : 'bg-soft-danger' ?>">
+                                            <i
+                                                class="fas <?= $user['estado'] == 'Activo' ? 'fa-check-circle' : 'fa-ban' ?> me-1"></i>
+                                            <?= $user['estado'] ?>
                                         </span>
                                     </td>
-                                    <td class="text-center text-muted small"><i class="far fa-calendar-alt me-1"></i> <?= date('d M, Y', strtotime($user['fecha_registro'])) ?></td>
-                                    
+                                    <td class="text-center text-muted small"><i class="far fa-calendar-alt me-1"></i>
+                                        <?= date('d M, Y', strtotime($user['fecha_registro'])) ?></td>
+
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center">
-                                            <button type="button" class="action-btn btn-edit me-2" data-bs-toggle="modal" data-bs-target="#modalEditar"
-                                                data-id="<?= $user['id_usuario'] ?>"
+                                            <button type="button" class="action-btn btn-edit me-2" data-bs-toggle="modal"
+                                                data-bs-target="#modalEditar" data-id="<?= $user['id_usuario'] ?>"
                                                 data-nombre="<?= htmlspecialchars($user['nombre']) ?>"
                                                 data-usuario="<?= htmlspecialchars($user['usuario']) ?>"
-                                                data-rol="<?= $user['rol'] ?>"
-                                                data-estado="<?= $user['estado'] ?>">
+                                                data-rol="<?= $user['rol'] ?>" data-estado="<?= $user['estado'] ?>">
                                                 <i class="fas fa-pen"></i>
                                             </button>
 
-                                            <form method="POST" action="" onsubmit="return confirm('¿Estás seguro de eliminar a este usuario?');">
+                                            <form method="POST" action=""
+                                                onsubmit="return confirm('¿Estás seguro de eliminar a este usuario?');">
                                                 <input type="hidden" name="accion" value="eliminar">
                                                 <input type="hidden" name="id_usuario" value="<?= $user['id_usuario'] ?>">
                                                 <button type="submit" class="action-btn btn-del">
@@ -181,7 +162,9 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
-                            <tr><td colspan="5" class="text-center py-5 text-muted">No hay usuarios registrados aún.</td></tr>
+                            <tr>
+                                <td colspan="5" class="text-center py-5 text-muted">No hay usuarios registrados aún.</td>
+                            </tr>
                         <?php endif; ?>
                     </tbody>
                 </table>
@@ -248,7 +231,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <form method="POST" action="">
                     <input type="hidden" name="accion" value="editar">
-                    <input type="hidden" name="id_usuario" id="edit_id"> <div class="modal-body">
+                    <input type="hidden" name="id_usuario" id="edit_id">
+                    <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label small fw-bold text-uppercase text-muted">Nombre Completo</label>
                             <input type="text" name="nombre" id="edit_nombre" class="form-control" required>
@@ -259,8 +243,10 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <input type="text" name="usuario" id="edit_usuario" class="form-control" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label small fw-bold text-uppercase text-muted">Contraseña (Opcional)</label>
-                                <input type="password" name="password" class="form-control" placeholder="Dejar vacío para no cambiar">
+                                <label class="form-label small fw-bold text-uppercase text-muted">Contraseña
+                                    (Opcional)</label>
+                                <input type="password" name="password" class="form-control"
+                                    placeholder="Dejar vacío para no cambiar">
                             </div>
                         </div>
                         <div class="row">
@@ -290,27 +276,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        const modalEditar = document.getElementById('modalEditar')
-        modalEditar.addEventListener('show.bs.modal', event => {
-            // Botón que disparó el modal
-            const button = event.relatedTarget
-            
-            // Extraer info de los atributos data-*
-            const id = button.getAttribute('data-id')
-            const nombre = button.getAttribute('data-nombre')
-            const usuario = button.getAttribute('data-usuario')
-            const rol = button.getAttribute('data-rol')
-            const estado = button.getAttribute('data-estado')
 
-            // Actualizar los inputs del modal
-            document.getElementById('edit_id').value = id
-            document.getElementById('edit_nombre').value = nombre
-            document.getElementById('edit_usuario').value = usuario
-            document.getElementById('edit_rol').value = rol
-            document.getElementById('edit_estado').value = estado
-        })
-    </script>
+    <script src="../public/js/script_lista_usuarios.js"></script>
 </body>
+
 </html>
