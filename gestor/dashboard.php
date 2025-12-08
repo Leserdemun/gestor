@@ -61,6 +61,7 @@
                     Inventario MP
                 </a>
 
+
                 <p class="px-3 mt-6 mb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Administración
                 </p>
 

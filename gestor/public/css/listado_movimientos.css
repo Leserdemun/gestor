@@ -1,0 +1,28 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f3f4f6;
+}
+
+.main-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    border: none;
+}
+
+
+.badge-entrada {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.badge-salida {
+    background-color: #f8d7da;
+    color: #842029;
+}

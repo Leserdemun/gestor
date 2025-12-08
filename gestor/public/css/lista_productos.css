@@ -1,0 +1,40 @@
+ body {
+     font-family: 'Poppins', sans-serif;
+     background-color: #f3f4f6;
+ }
+
+ .main-card {
+     background: white;
+     border-radius: 15px;
+     padding: 25px;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+ }
+
+ .btn-gradient {
+     background: linear-gradient(135deg, #FF9966 0%, #FF5E62 100%);
+     color: white;
+     border: none;
+ }
+
+ /* Naranja */
+ .badge-soft-success {
+     background-color: rgba(25, 135, 84, 0.1);
+     color: #198754;
+ }
+
+ .badge-soft-warning {
+     background-color: rgba(255, 193, 7, 0.1);
+     color: #ffc107;
+ }
+
+ .avatar {
+     width: 40px;
+     height: 40px;
+     background: #FFEFBA;
+     color: #d35400;
+     border-radius: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: bold;
+ }
