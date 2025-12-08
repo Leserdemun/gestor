@@ -15,7 +15,8 @@
             --sidebar-header: #1e4df9ff;
 
 
-            --main-bg: #5088c0ff;
+            --main-bg: #c74d4dff;
+            --header-border: #070707ff;
         }
 
         body {
@@ -34,6 +35,12 @@
 
         .custom-main-bg {
             background-color: var(--main-bg);
+        }
+
+
+
+        .custom-border-bottom {
+            border-bottom-color: var(--header-border) !important;
         }
     </style>
 </head>
@@ -330,7 +337,7 @@
 
         <main class="flex-1 flex flex-col overflow-hidden custom-main-bg">
 
-            <header class="h-16 custom-main-bg border-b border-gray-200 flex items-center justify-between px-8">
+            <header class="h-16 custom-main-bg border-b custom-border-bottom flex items-center justify-between px-8">
                 <h2 class="text-xl font-semibold text-slate-800">Panel de Control</h2>
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2">
