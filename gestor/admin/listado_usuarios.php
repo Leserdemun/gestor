@@ -1,7 +1,23 @@
 <?php
+
+
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 require_once '../conexion/conexion.php';
 
-$mensaje = '';
+
+function redirigirConMensaje($msg, $tipo = 'success')
+{
+    $_SESSION['mensaje'] = [
+        'texto' => $msg,
+        'tipo' => $tipo
+    ];
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accion']) && $_POST['accion'] == 'crear') {
     $nombre = $_POST['nombre'];
@@ -15,9 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accion']) && $_POST['a
         $sql = "INSERT INTO usuarios (nombre, usuario, password, rol, fecha_registro, estado) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$nombre, $usuario, $password, $rol, $fecha, $estado]);
-        $mensaje = '<div class="alert alert-success shadow-sm border-0">Usuario creado exitosamente.</div>';
+
+
+        redirigirConMensaje('Usuario creado exitosamente.', 'success');
+
     } catch (PDOException $e) {
-        $mensaje = '<div class="alert alert-danger shadow-sm border-0">Error: ' . $e->getMessage() . '</div>';
+
+        redirigirConMensaje('Error: ' . $e->getMessage(), 'danger');
     }
 }
 
@@ -31,33 +51,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accion']) && $_POST['a
     $pass_input = $_POST['password'];
 
     try {
-
         if (!empty($pass_input)) {
             $password = password_hash($pass_input, PASSWORD_DEFAULT);
             $sql = "UPDATE usuarios SET nombre=?, usuario=?, password=?, rol=?, estado=? WHERE id_usuario=?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$nombre, $usuario, $password, $rol, $estado, $id]);
         } else {
-
             $sql = "UPDATE usuarios SET nombre=?, usuario=?, rol=?, estado=? WHERE id_usuario=?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$nombre, $usuario, $rol, $estado, $id]);
         }
-        $mensaje = '<div class="alert alert-primary shadow-sm border-0">Usuario actualizado correctamente.</div>';
+
+
+        redirigirConMensaje('Usuario actualizado correctamente.', 'primary');
+
     } catch (PDOException $e) {
-        $mensaje = '<div class="alert alert-danger shadow-sm border-0">Error al actualizar: ' . $e->getMessage() . '</div>';
+        redirigirConMensaje('Error al actualizar: ' . $e->getMessage(), 'danger');
     }
 }
-
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accion']) && $_POST['accion'] == 'eliminar') {
     $id = $_POST['id_usuario'];
     try {
         $stmt = $pdo->prepare("DELETE FROM usuarios WHERE id_usuario = ?");
         $stmt->execute([$id]);
-        $mensaje = '<div class="alert alert-warning shadow-sm border-0">Usuario eliminado.</div>';
+
+
+        redirigirConMensaje('Usuario eliminado.', 'warning');
+
     } catch (PDOException $e) {
-        $mensaje = '<div class="alert alert-danger shadow-sm border-0">Error al eliminar: ' . $e->getMessage() . '</div>';
+        redirigirConMensaje('Error al eliminar: ' . $e->getMessage(), 'danger');
     }
 }
 
@@ -83,7 +106,14 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <div class="container mt-5 mb-5">
-        <?= $mensaje ?>
+        <?php if (isset($_SESSION['mensaje'])): ?>
+            <div class="alert alert-<?= $_SESSION['mensaje']['tipo'] ?> shadow-sm border-0 alert-dismissible fade show"
+                role="alert">
+                <?= $_SESSION['mensaje']['texto'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php unset($_SESSION['mensaje']); ?>
+        <?php endif; ?>
 
         <div class="main-card">
             <div class="d-flex justify-content-between align-items-center mb-4">

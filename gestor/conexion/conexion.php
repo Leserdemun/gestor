@@ -2,7 +2,7 @@
 $host = 'localhost';
 $db = 'gestor';
 $user = 'root';
-$pass = '704fb833429A#'; // Pon aquí tu contraseña de MySQL si tienes una
+$pass = '704fb833429A#';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
