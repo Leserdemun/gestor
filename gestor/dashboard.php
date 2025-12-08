@@ -22,7 +22,11 @@
         <aside class="w-64 bg-slate-900 text-white flex flex-col shadow-lg shrink-0">
             <div class="h-16 flex items-center px-6 bg-slate-950 border-b border-slate-800">
                 <div class="w-8 h-8 rounded bg-cyan-600 flex items-center justify-center mr-3">
-                    <i data-lucide="droplet" class="w-5 h-5 text-white"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 24 24">
+                        <title xmlns="">paint-bucket</title>
+                        <path fill="currentColor"
+                            d="M8 3h8v2H8zm0 2H6v4H4v12h16V9h-2V5h-2v4H8zm8 6h2v8H6v-8h2v6h2v-4h2v2h2v-2h2z" />
+                    </svg>
                 </div>
                 <span class="text-lg font-bold tracking-wide">InkSystem</span>
             </div>
@@ -30,7 +34,12 @@
             <nav class="flex-1 py-6 px-3 space-y-1">
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium bg-cyan-600 text-white rounded-md shadow-sm">
-                    <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+                        <title xmlns="">home</title>
+                        <path fill="#b800ff"
+                            d="M14 2h-4v2H8v2H6v2H4v2H2v2h2v10h7v-6h2v6h7V12h2v-2h-2V8h-2V6h-2V4h-2zm0 2v2h2v2h2v2h2v2h-2v8h-3v-6H9v6H6v-8H4v-2h2V8h2V6h2V4z" />
+                    </svg>
+
                     Panel Principal
                 </a>
 
