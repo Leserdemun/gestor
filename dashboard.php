@@ -11,13 +11,11 @@
     <style>
         :root {
 
-            --sidebar-bg: #504a4fff;
+            --sidebar-bg: #251ef9ff;
 
 
-            --sidebar-header: #504a4fff;
+            --sidebar-header: #1e4df9ff;
 
-
-            --logo-bg: #504a4fff;
         }
 
         body {
@@ -48,10 +46,37 @@
             <div class="h-16 flex items-center px-6 custom-sidebar-header border-b border-white/10">
 
                 <div class="w-8 h-8 rounded custom-logo-box flex items-center justify-center mr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 24 24">
-                        <title>paint-bucket</title>
-                        <path fill="#ffffff"
-                            d="M8 3h8v2H8zm0 2H6v4H4v12h16V9h-2V5h-2v4H8zm8 6h2v8H6v-8h2v6h2v-4h2v2h2v-2h2z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+                        <title xmlns="">buy-me-a-coffee-twotone</title>
+                        <defs>
+                            <mask id="SVGDJAMvcLZ">
+                                <path fill="#fff"
+                                    d="M5 6C5 4 7 6 11.5 6C16 6 19 4 19 6L19 7C19 8.5 17 9 12.5 9C8 9 5 9 5 7L5 6Z" />
+                            </mask>
+                            <mask id="SVGkAcgscvZ">
+                                <path fill="#fff"
+                                    d="M10.125 18.15C10.04 17.29 9.4 11.98 9.4 11.98C9.4 11.98 11.34 12.31 12.5 11.73C13.66 11.16 14.98 11 14.98 11C14.98 11 14.4 17.96 14.35 18.46C14.3 18.96 13.45 19.3 12.95 19.3L11.23 19.3C10.73 19.3 10.21 19 10.125 18.15Z" />
+                            </mask>
+                        </defs>
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path stroke-dasharray="32" stroke-dashoffset="32"
+                                d="M7.5 10.5c0 0 0.83 6.93 1 8.5c0.17 1.57 1.5 2 2.5 2l2 0c1.5 0 2.88 -1.14 3 -2c0.13 -0.86 1 -12 1 -12">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="32;0" />
+                            </path>
+                            <path stroke-dasharray="12" stroke-dashoffset="12"
+                                d="M8 4c1.1 -0.57 2 -1 4 -1c2 0 4.5 0.5 4.5 3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s"
+                                    values="12;0" />
+                            </path>
+                        </g>
+                        <rect width="16" height="5" x="20" y="4" fill="currentColor" mask="url(#SVGDJAMvcLZ)">
+                            <animate fill="freeze" attributeName="x" begin="0.4s" dur="0.4s" values="20;4" />
+                        </rect>
+                        <rect width="8" height="10" x="8" y="20" fill="currentColor" fill-opacity=".3"
+                            mask="url(#SVGkAcgscvZ)">
+                            <animate fill="freeze" attributeName="y" begin="1s" dur="0.4s" values="20;10" />
+                        </rect>
                     </svg>
                 </div>
                 <span class="text-lg font-bold tracking-wide">Todo en Color</span>
@@ -61,9 +86,30 @@
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium bg-white/10 text-white rounded-md shadow-sm border border-white/10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title>home</title>
-                        <path fill="currentColor"
-                            d="M14 2h-4v2H8v2H6v2H4v2H2v2h2v10h7v-6h2v6h7V12h2v-2h-2V8h-2V6h-2V4h-2zm0 2v2h2v2h2v2h2v2h-2v8h-3v-6H9v6H6v-8H4v-2h2V8h2V6h2V4z" />
+                        <title xmlns="">home-twotone</title>
+                        <path fill="currentColor" fill-opacity="0"
+                            d="M5 8.5l7 -5.5l7 5.5v12.5h-4v-8l-1 -1h-4l-1 1v8h-4v-12.5Z">
+                            <animate fill="freeze" attributeName="fill-opacity" begin="1.1s" dur="0.15s"
+                                values="0;0.3" />
+                        </path>
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path stroke-dasharray="16" stroke-dashoffset="16" d="M4.5 21.5h15">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.2s" values="16;0" />
+                            </path>
+                            <path stroke-dasharray="16" stroke-dashoffset="16" d="M4.5 21.5v-13.5M19.5 21.5v-13.5">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.2s"
+                                    values="16;0" />
+                            </path>
+                            <path stroke-dasharray="28" stroke-dashoffset="28" d="M2 10l10 -8l10 8">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.4s" dur="0.4s"
+                                    values="28;0" />
+                            </path>
+                            <path stroke-dasharray="24" stroke-dashoffset="24" d="M9.5 21.5v-9h5v9">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.4s"
+                                    values="24;0" />
+                            </path>
+                        </g>
                     </svg>
                     Menu Principal
                 </a>
@@ -75,9 +121,26 @@
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title>script-text</title>
-                        <path fill="currentColor"
-                            d="M6 3h14v2h2v6h-2v8h-2V5H6zm8 14v-2H6V5H4v10H2v4h2v2h14v-2h-2v-2zm0 0v2H4v-2zM8 7h8v2H8zm8 4H8v2h8z" />
+                        <title xmlns="">file-document</title>
+                        <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path stroke-dasharray="64" stroke-dashoffset="64"
+                                d="M13.5 3l5.5 5.5v11.5c0 0.55 -0.45 1 -1 1h-12c-0.55 0 -1 -0.45 -1 -1v-16c0 -0.55 0.45 -1 1 -1Z">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0" />
+                            </path>
+                            <path d="M14.5 3.5l2.25 2.25l2.25 2.25z" opacity="0">
+                                <animate fill="freeze" attributeName="d" begin="0.6s" dur="0.2s"
+                                    values="M14.5 3.5l2.25 2.25l2.25 2.25z;M14.5 3.5l0 4.5l4.5 0z" />
+                                <set fill="freeze" attributeName="opacity" begin="0.6s" to="1" />
+                            </path>
+                            <path stroke-dasharray="8" stroke-dashoffset="8" d="M9 13h6">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s"
+                                    values="8;0" />
+                            </path>
+                            <path stroke-dasharray="4" stroke-dashoffset="4" d="M9 17h3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1s" dur="0.2s"
+                                    values="4;0" />
+                            </path>
+                        </g>
                     </svg>
                     Reportes
                 </a>
@@ -85,9 +148,28 @@
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title>inbox-all</title>
-                        <path fill="currentColor"
-                            d="M3 2h18v20H3zm2 2v4h4v2h6V8h4V4zm14 6h-2v2H7v-2H5v4h14zm0 6h-2v2H7v-2H5v4h14z" />
+                        <title xmlns="">clipboard-list</title>
+                        <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path stroke-dasharray="72" stroke-dashoffset="72" d="M12 3h7v18h-14v-18h7Z">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="72;0" />
+                            </path>
+                            <path stroke-dasharray="12" stroke-dashoffset="12" stroke-width="1" d="M14.5 3.5v3h-5v-3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s"
+                                    values="12;0" />
+                            </path>
+                            <path stroke-dasharray="4" stroke-dashoffset="4" d="M9 10h3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s"
+                                    values="4;0" />
+                            </path>
+                            <path stroke-dasharray="6" stroke-dashoffset="6" d="M9 13h5">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.1s" dur="0.2s"
+                                    values="6;0" />
+                            </path>
+                            <path stroke-dasharray="8" stroke-dashoffset="8" d="M9 16h6">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.3s" dur="0.2s"
+                                    values="8;0" />
+                            </path>
+                        </g>
                     </svg>
                     Categorías
                 </a>
@@ -95,9 +177,24 @@
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title>fill-half</title>
-                        <path fill="currentColor"
-                            d="M9 2h2v2H9zm4 4V4h-2v2H9v2H7v2H5v2H3v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v6h2V12h-2v-2h-2V8h-2V6zm0 0v2h2v2h2v2h2v2H5v-2h2v-2h2V8h2V6z" />
+                        <title xmlns="">beer-twotone-loop</title>
+                        <mask id="SVG5fE0HcGe">
+                            <path fill="none" stroke="#fff" stroke-width="2"
+                                d="M18 7c-2 0 -3 2 -5 2c-2 0 -3 -2 -5 -2c-2 0 -3 2 -5 2c-2 0 -3 -2 -5 -2c-2 0 -3 2 -5 2"
+                                opacity="0">
+                                <animateMotion calcMode="linear" dur="3s" path="M0 0h10" repeatCount="indefinite" />
+                                <animate fill="freeze" attributeName="opacity" begin="0.7s" dur="0.4s" values="0;1" />
+                            </path>
+                        </mask>
+                        <path fill="currentColor" fill-opacity="0" d="M17 8L16 21H7L6 8z">
+                            <animate fill="freeze" attributeName="fill-opacity" begin="1.1s" dur="0.15s"
+                                values="0;0.3" />
+                        </path>
+                        <path fill="none" stroke="currentColor" stroke-dasharray="64" stroke-dashoffset="64"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 3l-2 18h-9l-2 -18Z">
+                            <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0" />
+                        </path>
+                        <path fill="currentColor" d="M18 3l-2 18h-9l-2 -18Z" mask="url(#SVG5fE0HcGe)" />
                     </svg>
                     Productos
                 </a>
@@ -105,10 +202,30 @@
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title>folder-x</title>
-                        <path fill="currentColor"
-                            d="M12 4H2v16h20V6H12zm-2 4h10v10H4V6h6zm6 4h-2v-2h-2v2h2v2h-2v2h2v-2h2v2h2v-2h-2zm0 0h2v-2h-2z" />
-                    </svg>
+                        <title xmlns="">folder-network</title>
+                        <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path stroke-dasharray="56" stroke-dashoffset="56"
+                                d="M12 6h7c0.55 0 1 0.45 1 1v8c0 0.55 -0.45 1 -1 1h-14c-0.55 0 -1 -0.45 -1 -1v-9Z">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="56;0" />
+                            </path>
+                            <path d="M12 6h-8v0c0 0 0.45 0 1 0h5z" opacity="0">
+                                <animate fill="freeze" attributeName="d" begin="0.6s" dur="0.2s"
+                                    values="M12 6h-8v0c0 0 0.45 0 1 0h5z;M12 6h-8v-1c0 -0.55 0.45 -1 1 -1h5z" />
+                                <set fill="freeze" attributeName="opacity" begin="0.6s" to="1" />
+                            </path>
+                            <path stroke-dasharray="6" stroke-dashoffset="6" d="M12 16v5">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s"
+                                    values="6;0" />
+                            </path>
+                            <path stroke-dasharray="10" stroke-dashoffset="10" d="M12 21h9M12 21h-9">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1s" dur="0.2s"
+                                    values="10;0" />
+                            </path>
+                            <path stroke-dasharray="14" stroke-dashoffset="14" d="M10 20h4v2h-4Z">
+                                <set fill="freeze" attributeName="stroke-dashoffset" begin="1.2s" to="0" />
+                            </path>
+                        </g>
+                    </svg>>
                     Inventario
                 </a>
 
@@ -119,9 +236,21 @@
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title>human-height</title>
-                        <path fill="currentColor"
-                            d="M6 2h4v4H6zM3 7h10v9h-2v6H9v-6H7v6H5v-6H3zm18-4h-6v2h6zm-4 4h4v2h-4zm4 4h-6v2h6zm-6 8h6v2h-6zm6-4h-4v2h4z" />
+                        <title xmlns="">person-twotone</title>
+                        <g fill="currentColor" fill-opacity="0" stroke="currentColor" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2">
+                            <path stroke-dasharray="20" stroke-dashoffset="20"
+                                d="M12 5c1.66 0 3 1.34 3 3c0 1.66 -1.34 3 -3 3c-1.66 0 -3 -1.34 -3 -3c0 -1.66 1.34 -3 3 -3Z">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="20;0" />
+                            </path>
+                            <path stroke-dasharray="36" stroke-dashoffset="36"
+                                d="M12 14c4 0 7 2 7 3v2h-14v-2c0 -1 3 -3 7 -3Z">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.5s"
+                                    values="36;0" />
+                            </path>
+                            <animate fill="freeze" attributeName="fill-opacity" begin="1.1s" dur="0.15s"
+                                values="0;0.3" />
+                        </g>
                     </svg>
                     Usuarios
                 </a>
@@ -129,9 +258,31 @@
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title>trending</title>
-                        <path fill="currentColor"
-                            d="M3 4h2v14h16v2H3zm6 10H7v2h2zm2-2v2H9v-2zm2 0v-2h-2v2zm2 0h-2v2h2zm2-2h-2v2h2zm2-2v2h-2V8zm0 0V6h2v2z" />
+                        <title xmlns="">monitor-arrow-down-twotone</title>
+                        <path fill="#ffffff" d="M10 16h4v0h-4z">
+                            <animate fill="freeze" attributeName="d" begin="0.6s" dur="0.2s"
+                                values="M10 16h4v0h-4z;M10 16h4v6h-4z" />
+                        </path>
+                        <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path fill="#ffffff" fill-opacity="0" stroke-dasharray="72" stroke-dashoffset="72"
+                                d="M12 17h-10v-14h20v14Z">
+                                <animate fill="freeze" attributeName="fill-opacity" begin="1.1s" dur="0.15s"
+                                    values="0;0.3" />
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="72;0" />
+                            </path>
+                            <path stroke-dasharray="4" stroke-dashoffset="4" d="M12 21h3M12 21h-3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s"
+                                    values="4;0" />
+                            </path>
+                            <path stroke-dasharray="8" stroke-dashoffset="8" d="M12 7v6">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.25s" dur="0.2s"
+                                    values="8;0" />
+                            </path>
+                            <path stroke-dasharray="6" stroke-dashoffset="6" d="M12 13l3 -3M12 13l-3 -3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.45s" dur="0.2s"
+                                    values="6;0" />
+                            </path>
+                        </g>
                     </svg>
                     Movimientos
                 </a>
@@ -139,9 +290,34 @@
                 <a href="#"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title>reciept-alt</title>
-                        <path fill="currentColor"
-                            d="M5 2H3v20h2v-2h2v2h2v-2h2v2h2v-2h2v2h2v-2h2v2h2V2h-2v2h-2V2h-2v2h-2V2h-2v2H9V2H7v2H5zm2 2h2v2h2V4h2v2h2V4h2v2h2v12h-2v2h-2v-2h-2v2h-2v-2H9v2H7v-2H5V6h2zm0 4h10v2H7zm10 4H7v2h10z" />
+                        <title xmlns="">folder-arrow-down</title>
+                        <mask id="SVGqrcpvbJg">
+                            <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2">
+                                <path stroke-dasharray="64" stroke-dashoffset="64"
+                                    d="M12 7h8c0.55 0 1 0.45 1 1v10c0 0.55 -0.45 1 -1 1h-16c-0.55 0 -1 -0.45 -1 -1v-11Z">
+                                    <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="64;0" />
+                                </path>
+                                <path d="M12 7h-9v0c0 0 0.45 0 1 0h6z" opacity="0">
+                                    <animate fill="freeze" attributeName="d" begin="0.6s" dur="0.2s"
+                                        values="M12 7h-9v0c0 0 0.45 0 1 0h6z;M12 7h-9v-1c0 -0.55 0.45 -1 1 -1h6z" />
+                                    <set fill="freeze" attributeName="opacity" begin="0.6s" to="1" />
+                                </path>
+                                <path fill="#000" fill-opacity="0" stroke="none"
+                                    d="M19 13c3.31 0 6 2.69 6 6c0 3.31 -2.69 6 -6 6c-3.31 0 -6 -2.69 -6 -6c0 -3.31 2.69 -6 6 -6Z">
+                                    <set fill="freeze" attributeName="fill-opacity" begin="0.8s" to="1" />
+                                </path>
+                                <path stroke-dasharray="6" stroke-dashoffset="6" d="M19 16v5">
+                                    <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s"
+                                        values="6;0" />
+                                </path>
+                                <path stroke-dasharray="4" stroke-dashoffset="4" d="M19 21l2 -2M19 21l-2 -2">
+                                    <animate fill="freeze" attributeName="stroke-dashoffset" begin="1s" dur="0.2s"
+                                        values="4;0" />
+                                </path>
+                            </g>
+                        </mask>
+                        <rect width="24" height="24" fill="currentColor" mask="url(#SVGqrcpvbJg)" />
                     </svg>
                     Listado de Facturas
                 </a>
@@ -160,9 +336,19 @@
                         <span class="text-sm font-medium text-slate-700">Admin</span>
                         <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600">
                             <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                                <title>github</title>
-                                <path fill="currentColor"
-                                    d="M5 2h4v2H7v2H5zm0 10H3V6h2zm2 2H5v-2h2zm2 2v-2H7v2H3v-2H1v2h2v2h4v4h2v-4h2v-2zm0 0v2H7v-2zm6-12v2H9V4zm4 2h-2V4h-2V2h4zm0 6V6h2v6zm-2 2v-2h2v2zm-2 2v-2h2v2zm0 2h-2v-2h2zm0 0h2v4h-2z" />
+                                <title xmlns="">account</title>
+                                <g fill="none" stroke="currentColor" stroke-dasharray="28" stroke-dashoffset="28"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <path d="M4 21v-1c0 -3.31 2.69 -6 6 -6h4c3.31 0 6 2.69 6 6v1">
+                                        <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s"
+                                            values="28;0" />
+                                    </path>
+                                    <path
+                                        d="M12 11c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4Z">
+                                        <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.4s" dur="0.4s"
+                                            values="28;0" />
+                                    </path>
+                                </g>
                             </svg>
                         </div>
                     </div>
@@ -185,6 +371,9 @@
 
             </div>
 
+            <div class="relative z-10 text-xs text-slate-600 font-medium">
+                &copy; S.I.G.E.T 2025 - Sistema de Inventario y Gestión de Tintas.
+            </div>
     </div>
     </main>
     </div>
