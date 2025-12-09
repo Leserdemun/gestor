@@ -30,10 +30,14 @@ try {
         exit;
     }
 
+    session_regenerate_id(true);
     $_SESSION['id'] = $data['id_usuario'];
     $_SESSION['nombre'] = $data['nombre'];
     $_SESSION['rol'] = $data['rol'];
     $_SESSION['usuario'] = $usuario;
+    $_SESSION['LAST_ACTIVITY'] = time();
+    $_SESSION['CREATED'] = time();
+
 
     echo json_encode(["ok" => true, "msg" => "Login correcto"]);
 
