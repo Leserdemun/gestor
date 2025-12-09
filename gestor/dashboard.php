@@ -1,5 +1,18 @@
+<?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
+
+
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +28,7 @@
             --sidebar-header: #1e4df9ff;
 
 
-            --main-bg: #c74d4dff;
+            --main-bg: #cdcdcdff;
             --header-border: #070707ff;
         }
 
@@ -339,9 +352,20 @@
 
             <header class="h-16 custom-main-bg border-b custom-border-bottom flex items-center justify-between px-8">
                 <h2 class="text-xl font-semibold text-slate-800">Panel de Control</h2>
+
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2">
-                        <span class="text-sm font-medium text-slate-700">Admin</span>
+
+                        <!-- USUARIO + ROL -->
+                        <div class="flex flex-col leading-tight text-right">
+                            <span class="text-sm font-semibold text-slate-800">
+                                <?php echo htmlspecialchars($_SESSION['usuario']); ?>
+                            </span>
+                            <span class="text-xs text-slate-500 -mt-0.5">
+                                <?php echo htmlspecialchars($_SESSION['rol']); ?>
+                            </span>
+                        </div>
+
                         <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600">
                             <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
                                 <title>account</title>
@@ -360,8 +384,16 @@
                             </svg>
                         </div>
                     </div>
+
+                    <button onclick="openLogoutModal()"
+                        class="text-sm font-medium text-red-600 hover:text-red-700 hover:underline decoration-2 underline-offset-4 transition">
+                        Cerrar sesión
+                    </button>
                 </div>
             </header>
+
+
+
 
             <div class="flex-1 overflow-y-auto p-8 custom-main-bg">
                 <div class="mb-8">
@@ -384,6 +416,66 @@
     <script>
         lucide.createIcons();
     </script>
+
+    <script>
+        function openLogoutModal() {
+            document.getElementById("logoutModal").classList.remove("hidden");
+        }
+
+        function closeLogoutModal() {
+            document.getElementById("logoutModal").classList.add("hidden");
+        }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeLogoutModal();
+        });
+    </script>
+
+
+    <!-- MODAL LOGOUT -->
+    <div id="logoutModal"
+        class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+
+        <div
+            class="bg-white dark:bg-slate-900 w-full max-w-sm p-6 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 animate-[scaleUp_0.25s_ease-out]">
+
+            <h2 class="text-xl font-bold text-slate-800 dark:text-white mb-3 text-center">
+                ¿Cerrar sesión?
+            </h2>
+
+            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 text-center">
+                Tu sesión se cerrará y volverás a la pantalla de inicio.
+            </p>
+
+            <div class="flex gap-3">
+                <button onclick="closeLogoutModal()"
+                    class="flex-1 py-2 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                    Cancelar
+                </button>
+
+                <button onclick="window.location.href='logout.php'"
+                    class="flex-1 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                    Sí, salir
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        @keyframes scaleUp {
+            from {
+                transform: scale(0.92);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+
 </body>
 
 </html>
