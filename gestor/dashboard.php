@@ -1,10 +1,40 @@
 <?php
 session_start();
+
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+
+$timeout = 1800;
+
+
 if (!isset($_SESSION['id'])) {
     header("Location: index.php");
     exit;
 }
+
+
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $timeout)) {
+
+
+    session_unset();
+    session_destroy();
+    header("Location: index.php?expired=1");
+    exit;
+}
+
+$_SESSION['LAST_ACTIVITY'] = time();
+
+if (!isset($_SESSION['CREATED'])) {
+    $_SESSION['CREATED'] = time();
+} else if (time() - $_SESSION['CREATED'] > 300) {
+    session_regenerate_id(true);
+    $_SESSION['CREATED'] = time();
+}
 ?>
+
 
 
 
