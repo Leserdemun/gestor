@@ -139,8 +139,8 @@
                     <i class="fa-solid fa-droplet text-xl"></i>
                 </div>
                 <div>
-                    <span
-                        class="font-display font-bold text-3xl tracking-wide text-white block leading-none">Todo en Colo</span>
+                    <span class="font-display font-bold text-3xl tracking-wide text-white block leading-none">Todo en
+                        Color</span>
                     <span class="text-xs text-ink-cyan tracking-[0.3em] uppercase">COLORES ESPECIALES OFFSET</span>
                 </div>
             </div>
@@ -152,7 +152,8 @@
                 Precisión en <br>cada gota.
             </h2>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Plataforma integral para la gestión de existencias en el mercado formulaciones de tinta, control de viscosidad e inventario de
+                Plataforma integral para la gestión de existencias en el mercado formulaciones de tinta, control de
+                viscosidad e inventario de
                 pigmentos en tiempo real.
             </p>
 
@@ -177,7 +178,7 @@
         </div>
 
         <div class="relative z-10 text-xs text-slate-600 font-medium">
-            &copy;  S.I.G.E.T 2025 - Sistema de Inventario y Gestión de Tintas.
+            &copy; S.I.G.E.T 2025 - Sistema de Inventario y Gestión de Tintas.
         </div>
     </div>
 

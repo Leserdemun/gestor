@@ -12,10 +12,11 @@
         :root {
 
             --sidebar-bg: #251ef9ff;
-
-
             --sidebar-header: #1e4df9ff;
 
+
+            --main-bg: #cdcdcdff;
+            --header-border: #070707ff;
         }
 
         body {
@@ -31,8 +32,15 @@
             background-color: var(--sidebar-header);
         }
 
-        .custom-logo-box {
-            background-color: var(--logo-bg);
+
+        .custom-main-bg {
+            background-color: var(--main-bg);
+        }
+
+
+
+        .custom-border-bottom {
+            border-bottom-color: var(--header-border) !important;
         }
     </style>
 </head>
@@ -83,7 +91,7 @@
             </div>
 
             <nav class="flex-1 py-6 px-3 space-y-1">
-                <a href="#"
+                <a href="dashboard.php"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium bg-white/10 text-white rounded-md shadow-sm border border-white/10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
                         <title xmlns="">home-twotone</title>
@@ -145,7 +153,7 @@
                     Reportes
                 </a>
 
-                <a href="#"
+                <a href="./users/provedores.php"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
                         <title xmlns="">clipboard-list</title>
@@ -171,10 +179,39 @@
                             </path>
                         </g>
                     </svg>
-                    Categorías
+                    Provedores
                 </a>
 
-                <a href="#"
+                <a href="./users/clientes.php"
+                    class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+                        <title xmlns="">clipboard-list</title>
+                        <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path stroke-dasharray="72" stroke-dashoffset="72" d="M12 3h7v18h-14v-18h7Z">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="72;0" />
+                            </path>
+                            <path stroke-dasharray="12" stroke-dashoffset="12" stroke-width="1" d="M14.5 3.5v3h-5v-3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.2s"
+                                    values="12;0" />
+                            </path>
+                            <path stroke-dasharray="4" stroke-dashoffset="4" d="M9 10h3">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.2s"
+                                    values="4;0" />
+                            </path>
+                            <path stroke-dasharray="6" stroke-dashoffset="6" d="M9 13h5">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.1s" dur="0.2s"
+                                    values="6;0" />
+                            </path>
+                            <path stroke-dasharray="8" stroke-dashoffset="8" d="M9 16h6">
+                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.3s" dur="0.2s"
+                                    values="8;0" />
+                            </path>
+                        </g>
+                    </svg>
+                    Clientes
+                </a>
+
+                <a href="./src/productos.php"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
                         <title xmlns="">beer-twotone-loop</title>
@@ -199,41 +236,13 @@
                     Productos
                 </a>
 
-                <a href="#"
-                    class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                        <title xmlns="">folder-network</title>
-                        <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                            <path stroke-dasharray="56" stroke-dashoffset="56"
-                                d="M12 6h7c0.55 0 1 0.45 1 1v8c0 0.55 -0.45 1 -1 1h-14c-0.55 0 -1 -0.45 -1 -1v-9Z">
-                                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="56;0" />
-                            </path>
-                            <path d="M12 6h-8v0c0 0 0.45 0 1 0h5z" opacity="0">
-                                <animate fill="freeze" attributeName="d" begin="0.6s" dur="0.2s"
-                                    values="M12 6h-8v0c0 0 0.45 0 1 0h5z;M12 6h-8v-1c0 -0.55 0.45 -1 1 -1h5z" />
-                                <set fill="freeze" attributeName="opacity" begin="0.6s" to="1" />
-                            </path>
-                            <path stroke-dasharray="6" stroke-dashoffset="6" d="M12 16v5">
-                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s"
-                                    values="6;0" />
-                            </path>
-                            <path stroke-dasharray="10" stroke-dashoffset="10" d="M12 21h9M12 21h-9">
-                                <animate fill="freeze" attributeName="stroke-dashoffset" begin="1s" dur="0.2s"
-                                    values="10;0" />
-                            </path>
-                            <path stroke-dasharray="14" stroke-dashoffset="14" d="M10 20h4v2h-4Z">
-                                <set fill="freeze" attributeName="stroke-dashoffset" begin="1.2s" to="0" />
-                            </path>
-                        </g>
-                    </svg>>
-                    Inventario
-                </a>
+
 
                 <p class="px-3 mt-6 mb-2 text-xs font-semibold text-white/50 uppercase tracking-wider">Opciones de
                     Administración
                 </p>
 
-                <a href="#"
+                <a href="./admin/listado_usuarios.php"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
                         <title xmlns="">person-twotone</title>
@@ -255,7 +264,7 @@
                     Usuarios
                 </a>
 
-                <a href="#"
+                <a href="./src/movimientos.php"
                     class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-md transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
                         <title xmlns="">monitor-arrow-down-twotone</title>
@@ -326,17 +335,16 @@
             </nav>
         </aside>
 
-        <main class="flex-1 flex flex-col overflow-hidden">
+        <main class="flex-1 flex flex-col overflow-hidden custom-main-bg">
 
-            <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8">
+            <header class="h-16 custom-main-bg border-b custom-border-bottom flex items-center justify-between px-8">
                 <h2 class="text-xl font-semibold text-slate-800">Panel de Control</h2>
                 <div class="flex items-center gap-4">
-
                     <div class="flex items-center gap-2">
                         <span class="text-sm font-medium text-slate-700">Admin</span>
                         <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600">
                             <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
-                                <title xmlns="">account</title>
+                                <title>account</title>
                                 <g fill="none" stroke="currentColor" stroke-dasharray="28" stroke-dashoffset="28"
                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <path d="M4 21v-1c0 -3.31 2.69 -6 6 -6h4c3.31 0 6 2.69 6 6v1">
@@ -355,27 +363,22 @@
                 </div>
             </header>
 
-            <div class="flex-1 overflow-y-auto p-8 bg-gray-50">
-
+            <div class="flex-1 overflow-y-auto p-8 custom-main-bg">
                 <div class="mb-8">
                     <h1 class="text-2xl font-bold text-slate-900">Bienvenido a Todo en Color</h1>
-                    <p class="text-slate-500 mt-1">Tu sistema de gestión está listo. Agrega
-                        tus categorias o añade tus productos nuevos.</p>
+                    <p class="text-slate-500 mt-1">Tu sistema de gestión está listo. Agrega tus categorias o añade tus
+                        productos nuevos.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-
-
                 </div>
-
-
             </div>
 
-            <div class="relative z-10 text-xs text-slate-600 font-medium">
+            <div class="relative z-10 text-xs text-slate-600 font-medium p-8 custom-main-bg">
                 &copy; S.I.G.E.T 2025 - Sistema de Inventario y Gestión de Tintas.
             </div>
-    </div>
-    </main>
+
+        </main>
     </div>
 
     <script>
@@ -383,4 +386,4 @@
     </script>
 </body>
 
-</html>
+</html> 
