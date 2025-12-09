@@ -3,51 +3,58 @@ require_once '../conexion/conexion.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion'])) {
-    if ($_POST['accion'] === 'crear') {
-        try {
-
-            $pdo->beginTransaction();
-
-
-            $sql = "INSERT INTO movimientos (id_producto, id_usuario, tipo_movimiento, cantidad, observaciones, fecha_movimiento) 
-                    VALUES (:prod, :user, :tipo, :cant, :obs, NOW())";
+    try {
+        if ($_POST['accion'] === 'crear') {
+            $sql = "INSERT INTO productos (nombre, categoria, descripcion, precio_compra, precio_venta, stock, unidad_medida, id_proveedor, fecha_registro) 
+                    VALUES (:nom, :cat, :desc, :p_compra, :p_venta, :stock, :unidad, :id_prov, NOW())";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
-                ':prod' => $_POST['id_producto'],
-                ':user' => $_POST['id_usuario'],
-                ':tipo' => $_POST['tipo_movimiento'],
-                ':cant' => $_POST['cantidad'],
-                ':obs' => $_POST['observaciones']
+                ':nom' => $_POST['nombre'],
+                ':cat' => $_POST['categoria'],
+                ':desc' => $_POST['descripcion'],
+                ':p_compra' => $_POST['precio_compra'],
+                ':p_venta' => $_POST['precio_venta'],
+                ':stock' => $_POST['stock'],
+                ':unidad' => $_POST['unidad_medida'],
+                ':id_prov' => $_POST['id_proveedor']
             ]);
-
-
-            $operador = ($_POST['tipo_movimiento'] == 'Entrada') ? '+' : '-';
-            $sqlUpdate = "UPDATE productos SET stock = stock $operador :cant WHERE id_producto = :id";
-            $stmtUpdate = $pdo->prepare($sqlUpdate);
-            $stmtUpdate->execute([':cant' => $_POST['cantidad'], ':id' => $_POST['id_producto']]);
-
-
-            $pdo->commit();
-            $_SESSION['mensaje'] = ['tipo' => 'success', 'texto' => 'Movimiento registrado y Stock actualizado.'];
-
-        } catch (Exception $e) {
-            $pdo->rollBack();
-            $_SESSION['mensaje'] = ['tipo' => 'danger', 'texto' => 'Error: ' . $e->getMessage()];
+            $_SESSION['mensaje'] = ['tipo' => 'success', 'texto' => 'Producto creado correctamente.'];
+        } elseif ($_POST['accion'] === 'editar') {
+            $sql = "UPDATE productos SET nombre=:nom, categoria=:cat, descripcion=:desc, precio_compra=:p_compra, 
+                    precio_venta=:p_venta, unidad_medida=:unidad, id_proveedor=:id_prov WHERE id_producto=:id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':nom' => $_POST['nombre'],
+                ':cat' => $_POST['categoria'],
+                ':desc' => $_POST['descripcion'],
+                ':p_compra' => $_POST['precio_compra'],
+                ':p_venta' => $_POST['precio_venta'],
+                ':unidad' => $_POST['unidad_medida'],
+                ':id_prov' => $_POST['id_proveedor'],
+                ':id' => $_POST['id_producto']
+            ]);
+            $_SESSION['mensaje'] = ['tipo' => 'primary', 'texto' => 'Producto actualizado.'];
+        } elseif ($_POST['accion'] === 'eliminar') {
+            $stmt = $pdo->prepare("DELETE FROM productos WHERE id_producto = :id");
+            $stmt->execute([':id' => $_POST['id_producto']]);
+            $_SESSION['mensaje'] = ['tipo' => 'danger', 'texto' => 'Producto eliminado.'];
         }
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    } catch (Exception $e) {
+        $_SESSION['mensaje'] = ['tipo' => 'danger', 'texto' => 'Error (Posiblemente el producto tiene movimientos asociados): ' . $e->getMessage()];
     }
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
 }
 
 
-$movimientos = $pdo->query("SELECT m.*, p.nombre as producto, u.nombre as usuario 
-                            FROM movimientos m 
-                            JOIN productos p ON m.id_producto = p.id_producto 
-                            JOIN usuarios u ON m.id_usuario = u.id_usuario 
-                            ORDER BY m.fecha_movimiento DESC")->fetchAll();
+$sql_prod = "SELECT p.*, prov.nombre as nombre_proveedor 
+             FROM productos p 
+             LEFT JOIN proveedores prov ON p.id_proveedor = prov.id_proveedor 
+             ORDER BY p.id_producto DESC";
+$productos = $pdo->query($sql_prod)->fetchAll();
 
-$productos = $pdo->query("SELECT id_producto, nombre, stock FROM productos ORDER BY nombre")->fetchAll();
-$usuarios = $pdo->query("SELECT id_usuario, nombre FROM usuarios ORDER BY nombre")->fetchAll();
+
+$proveedores = $pdo->query("SELECT id_proveedor, nombre FROM proveedores ORDER BY nombre")->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -55,10 +62,10 @@ $usuarios = $pdo->query("SELECT id_usuario, nombre FROM usuarios ORDER BY nombre
 
 <head>
     <meta charset="UTF-8">
-    <title>Control de Movimientos</title>
+    <title>Inventario de Productos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../public/css/listado_movimientos.css">
+    <link rel="stylesheet" href="../public/css/lista_productos.css">
 </head>
 
 <body>
@@ -73,44 +80,58 @@ $usuarios = $pdo->query("SELECT id_usuario, nombre FROM usuarios ORDER BY nombre
 
         <div class="main-card">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h3 class="fw-bold mb-0">Ink / Movimientos</h3>
-                    <p class="text-muted small">Historial de Entradas y Salidas</p>
-                </div>
-                <button class="btn btn-gradient px-4" data-bs-toggle="modal" data-bs-target="#modalMovimiento">
-                    <i class="fas fa-exchange-alt me-2"></i>Registrar Movimiento
+                <h3 class="fw-bold">Catálogo de Productos</h3>
+                <button class="btn btn-gradient px-4 py-2 rounded-3" data-bs-toggle="modal"
+                    data-bs-target="#modalCrear">
+                    <i class="fas fa-box-open me-2"></i>Nuevo Producto
                 </button>
             </div>
 
             <div class="table-responsive">
                 <table class="table align-middle">
-                    <thead class="table-light">
+                    <thead class="text-uppercase text-secondary small">
                         <tr>
-                            <th>Fecha</th>
                             <th>Producto</th>
-                            <th>Tipo</th>
-                            <th>Cantidad</th>
-                            <th>Usuario</th>
-                            <th>Observaciones</th>
+                            <th>Categoría</th>
+                            <th>Precios (C/V)</th>
+                            <th>Stock</th>
+                            <th>Proveedor</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($movimientos as $mov): ?>
+                        <?php foreach ($productos as $prod): ?>
                             <tr>
-                                <td class="small text-muted"><?= date('d/m/Y H:i', strtotime($mov['fecha_movimiento'])) ?>
-                                </td>
-                                <td class="fw-bold"><?= htmlspecialchars($mov['producto']) ?></td>
                                 <td>
-                                    <span class="badge badge-<?= strtolower($mov['tipo_movimiento']) ?>">
-                                        <i
-                                            class="fas fa-<?= $mov['tipo_movimiento'] == 'Entrada' ? 'arrow-down' : 'arrow-up' ?> me-1"></i>
-                                        <?= $mov['tipo_movimiento'] ?>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar me-3"><?= strtoupper(substr($prod['nombre'], 0, 1)) ?></div>
+                                        <div>
+                                            <div class="fw-bold"><?= htmlspecialchars($prod['nombre']) ?></div><small
+                                                class="text-muted"><?= $prod['unidad_medida'] ?></small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span
+                                        class="badge bg-light text-dark border"><?= htmlspecialchars($prod['categoria']) ?></span>
+                                </td>
+                                <td><small class="text-muted">$<?= $prod['precio_compra'] ?> / </small>
+                                    <strong>$<?= $prod['precio_venta'] ?></strong>
+                                </td>
+                                <td>
+                                    <span class="badge badge-soft-<?= $prod['stock'] < 5 ? 'warning' : 'success' ?> fs-6">
+                                        <?= $prod['stock'] ?>
                                     </span>
                                 </td>
-                                <td class="fw-bold fs-5 text-center"><?= $mov['cantidad'] ?></td>
-                                <td class="small"><i
-                                        class="fas fa-user-circle me-1"></i><?= htmlspecialchars($mov['usuario']) ?></td>
-                                <td class="text-muted small fst-italic"><?= htmlspecialchars($mov['observaciones']) ?></td>
+                                <td class="small text-muted"><i
+                                        class="fas fa-truck me-1"></i><?= htmlspecialchars($prod['nombre_proveedor'] ?? 'N/A') ?>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-light text-primary" data-bs-toggle="modal"
+                                        data-bs-target="#modalEditar"
+                                        onclick="cargarEditar(<?= htmlspecialchars(json_encode($prod)) ?>)"><i
+                                            class="fas fa-pen"></i></button>
+                                    
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -119,73 +140,88 @@ $usuarios = $pdo->query("SELECT id_usuario, nombre FROM usuarios ORDER BY nombre
         </div>
     </div>
 
-    <div class="modal fade" id="modalMovimiento" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content shadow-lg">
-                <div class="modal-header bg-light">
-                    <h5 class="fw-bold">Nuevo Movimiento</h5><button class="btn-close" data-bs-dismiss="modal"></button>
+    <div class="modal fade" id="modalCrear" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="fw-bold">Registrar Producto</h5><button class="btn-close"
+                        data-bs-dismiss="modal"></button>
                 </div>
                 <form method="POST">
                     <input type="hidden" name="accion" value="crear">
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="fw-bold small text-muted">TIPO DE MOVIMIENTO</label>
-                            <div class="d-flex gap-3 mt-1">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_movimiento" value="Entrada"
-                                        id="t1" checked>
-                                    <label class="form-check-label text-success fw-bold" for="t1"><i
-                                            class="fas fa-arrow-down"></i> Entrada (Relleno)</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo_movimiento" value="Salida"
-                                        id="t2">
-                                    <label class="form-check-label text-danger fw-bold" for="t2"><i
-                                            class="fas fa-arrow-up"></i> Salida (Venta)</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Producto</label>
-                            <select name="id_producto" class="form-select" required>
-                                <option value="">Seleccione producto...</option>
-                                <?php foreach ($productos as $p): ?>
-                                    <option value="<?= $p['id_producto'] ?>"><?= htmlspecialchars($p['nombre']) ?> (Stock
-                                        actual: <?= $p['stock'] ?>)</option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-6 mb-3">
-                                <label class="form-label">Cantidad</label>
-                                <input type="number" name="cantidad" class="form-control" min="1" required>
-                            </div>
-                            <div class="col-6 mb-3">
-                                <label class="form-label">Usuario Responsable</label>
-                                <select name="id_usuario" class="form-select" required>
-                                    <?php foreach ($usuarios as $u): ?>
-                                        <option value="<?= $u['id_usuario'] ?>"><?= htmlspecialchars($u['nombre']) ?>
-                                        </option>
+                        <div class="row g-3">
+                            <div class="col-md-6"><label>Nombre</label><input type="text" name="nombre"
+                                    class="form-control" required></div>
+                            <div class="col-md-6"><label>Categoría</label><input type="text" name="categoria"
+                                    class="form-control"></div>
+                            <div class="col-md-4"><label>Precio Compra</label><input type="number" step="0.01"
+                                    name="precio_compra" class="form-control" required></div>
+                            <div class="col-md-4"><label>Precio Venta</label><input type="number" step="0.01"
+                                    name="precio_venta" class="form-control" required></div>
+                            <div class="col-md-4"><label>Stock Inicial</label><input type="number" name="stock"
+                                    class="form-control" required></div>
+                            <div class="col-md-6"><label>Unidad Medida</label><input type="text" name="unidad_medida"
+                                    placeholder="pza, kg, lt..." class="form-control"></div>
+                            <div class="col-md-6"><label>Proveedor</label>
+                                <select name="id_proveedor" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <?php foreach ($proveedores as $prov): ?>
+                                        <option value="<?= $prov['id_proveedor'] ?>"><?= $prov['nombre'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Observaciones</label>
-                            <textarea name="observaciones" class="form-control"
-                                placeholder="Ej. Factura #123, Merma, etc..."></textarea>
+                            <div class="col-12"><label>Descripción</label><textarea name="descripcion"
+                                    class="form-control" rows="2"></textarea></div>
                         </div>
                     </div>
-                    <div class="modal-footer"><button type="submit" class="btn btn-gradient w-100">Registrar y
-                            Actualizar Stock</button></div>
+                    <div class="modal-footer border-0"><button class="btn btn-gradient">Guardar</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditar" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="fw-bold">Editar Producto</h5><button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="POST">
+                    <input type="hidden" name="accion" value="editar">
+                    <input type="hidden" name="id_producto" id="edit_id">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label>Nombre</label><input type="text" name="nombre" id="edit_nombre"
+                                    class="form-control" required></div>
+                            <div class="col-md-6"><label>Categoría</label><input type="text" name="categoria"
+                                    id="edit_categoria" class="form-control"></div>
+                            <div class="col-md-6"><label>Precio Compra</label><input type="number" step="0.01"
+                                    name="precio_compra" id="edit_compra" class="form-control"></div>
+                            <div class="col-md-6"><label>Precio Venta</label><input type="number" step="0.01"
+                                    name="precio_venta" id="edit_venta" class="form-control"></div>
+                            <div class="col-md-6"><label>Unidad</label><input type="text" name="unidad_medida"
+                                    id="edit_unidad" class="form-control"></div>
+                            <div class="col-md-6"><label>Proveedor</label>
+                                <select name="id_proveedor" id="edit_proveedor" class="form-select">
+                                    <?php foreach ($proveedores as $prov): ?>
+                                        <option value="<?= $prov['id_proveedor'] ?>"><?= $prov['nombre'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-12"><label>Descripción</label><textarea name="descripcion" id="edit_desc"
+                                    class="form-control"></textarea></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0"><button class="btn btn-gradient">Actualizar</button></div>
                 </form>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/js/script_producto.js"></script>
+
 </body>
 
 </html>
