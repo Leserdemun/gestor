@@ -2,7 +2,7 @@
 session_start();
 header("Content-Type: application/json");
 
-require "./conexion/conexion.php"; // tu archivo que crea $pdo
+require "./conexion/conexion.php";
 
 $usuario = $_POST['usuario'] ?? '';
 $password = $_POST['password'] ?? '';

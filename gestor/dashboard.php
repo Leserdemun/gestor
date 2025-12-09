@@ -356,7 +356,7 @@ if (!isset($_SESSION['id'])) {
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2">
 
-                        <!-- USUARIO + ROL -->
+
                         <div class="flex flex-col leading-tight text-right">
                             <span class="text-sm font-semibold text-slate-800">
                                 <?php echo htmlspecialchars($_SESSION['usuario']); ?>
